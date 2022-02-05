@@ -13,20 +13,22 @@
 /// \param c - адрес ячейки памяти массива в который будет записываться результат
 /// \param sizeC - изначальный размер результирующего массива
 void intersectionTwoArray(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c, size_t *sizeC) {
-    for (register size_t i = 0; i < sizeA; ++i) {
-        c[*sizeC] = a[i];
-        (*sizeC)++;
-    }
-
-    bool elemInArray = false;
-    for (register size_t i = 0; i < sizeA; ++i) {
-        for (register size_t j = 0; j < sizeB && !elemInArray; ++j)
-            if (a[i] == b[j])
-                elemInArray = true;
-
-        if (!elemInArray) {
-            c[*sizeC] = b[i];
+    if (sizeA != 0 && sizeB != 0) {
+        for (register size_t i = 0; i < sizeA; ++i) {
+            c[*sizeC] = a[i];
             (*sizeC)++;
+        }
+
+        bool elemInArray = false;
+        for (register size_t i = 0; i < sizeB; ++i) {
+            for (register size_t j = 0; j < sizeA && !elemInArray; ++j)
+                if (b[i] == a[j])
+                    elemInArray = true;
+
+            if (!elemInArray) {
+                c[*sizeC] = b[i];
+                (*sizeC)++;
+            }
             elemInArray = false;
         }
     }
