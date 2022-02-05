@@ -110,4 +110,139 @@ symmetricDifferenceTwoArray(const int *a, const size_t sizeA, const int *b, cons
     }
 }
 
+// Вариант 5
+/// Проверяет, что все элементы массива A принадлежат массиву B.
+/// \param b - адрес нулевой ячейки памяти массива
+/// \param sizeB - размер массива
+/// \param a - адрес нулевой ячейки памяти массива
+/// \param sizeA - размер массива
+/// \return Возвращает true, если все элементы массива A принадлежат B, иначе false.
+bool allElementsFromAInB(const int *b, const size_t sizeB, const int *a, const size_t sizeA) {
+    if (sizeB < sizeA)
+        return false;
+
+    for (register size_t i = 0; i < sizeB; ++i)
+        for (register size_t j = 0; j < sizeA; ++j)
+            if (b[i] != a[j])
+                return false;
+
+    return true;
+}
+
+// Вариант 6
+/// Два массива равны, т.е имеют все равные элементы.
+/// \param a - адрес нулевой ячейки памяти массива
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива
+/// \param sizeB - размер массива
+/// \return Возвращает true, если массивы равны, иначе false.
+bool isEqualArrays(const int *a, const size_t sizeA, const int *b, const size_t sizeB) {
+    if (sizeA != sizeB)
+        return false;
+
+    for (register size_t i = 0; i < sizeA; ++i)
+        for (register size_t j = 0; j < sizeB; ++j)
+            if (a[i] != b[j])
+                return false;
+
+    return true;
+}
+
+// Вариант 7
+/// Два массива не имеют общий элементов.
+/// \param a - адрес нулевой ячейки памяти массива
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива
+/// \param sizeB - размер массива
+/// \return Возвращает true, если нет общих элементов, иначе false.
+bool twoArrayDontHaveEqualElements(const int *a, const size_t sizeA, const int *b, const size_t sizeB) {
+    for (register size_t i = 0; i < sizeA; ++i)
+        for (register size_t j = 0; j < sizeB; ++j)
+            if (a[i] == b[j])
+                return false;
+
+    return true;
+}
+
+///
+/// \param a
+/// \param sizeA
+/// \param b
+/// \param sizeB
+/// \param c
+/// \param sizeC
+void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+                                         size_t *sizeC) {
+    size_t iReadA = 0;
+    size_t iReadB = 0;
+    while (iReadA < sizeA || iReadB < sizeB) {
+        if (iReadB == sizeB || a[iReadA] < b[sizeB]) {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+        } else {
+            c[iReadA + iReadB] = b[iReadB];
+            iReadB++;
+        }
+    }
+}
+
+//
+///
+/// \param a
+/// \param sizeA
+/// \param b
+/// \param sizeB
+/// \param c
+/// \param sizeC
+void
+createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+                                           size_t *sizeC) {
+    size_t iReadA = 0;
+    size_t iReadB = 0;
+    while (iReadA < sizeA || iReadB < sizeB) {
+        if (a[iReadA] < b[iReadB]) {
+            iReadA++;
+        } else if (a[iReadA] > b[iReadB]) {
+            iReadB++;
+        } else {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+            iReadB++;
+        }
+    }
+}
+
+//
+///
+/// \param a
+/// \param sizeA
+/// \param b
+/// \param sizeB
+/// \param c
+/// \param sizeC
+/// \return
+bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, const size_t sizeA) {
+    if (sizeA > sizeB)
+        return false;
+
+    size_t iReadA = 0;
+    size_t iReadB = 0;
+    unsigned counterEquals = 0;
+    while (iReadA < sizeA || iReadB < sizeB) {
+        if (a[iReadA] < b[iReadB])
+            iReadA++;
+        else if (a[iReadA] > b[iReadB])
+            iReadB++;
+        else {
+            counterEquals++;
+            iReadA++;
+            iReadB++;
+        }
+    }
+
+    return counterEquals == sizeA;
+}
+
+
+
 
