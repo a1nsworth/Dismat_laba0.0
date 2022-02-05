@@ -401,11 +401,66 @@ void test_symmetricDifferenceTwoArray() {
 }
 
 void test_allElementsFromAInB_oneArrayIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[3] = {1, 2, 3};
 
+    // Act and Assert
+    assert(isEqualArrays(b, 3, a, 0));
+}
+
+void test_allElementsFromAInB_twoArraysIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 0, a, 0));
+}
+
+void test_allElementsFromAInB_arrayALargeArrayB() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[4] = {1, 2, 3, 4};
+
+    // Act and Assert
+    assert(!isEqualArrays(b, 4, a, 5));
+}
+
+void test_allElementsFromAInB_twoArraysIsEqual() {
+    // Arrange
+    int a[4] = {1, 2, 3, 4};
+    int b[4] = {1, 2, 3, 4};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 4, a, 4));
+}
+
+void test_allElementsFromAInB_BlargeA() {
+    // Arrange
+    int a[4] = {1, 2, 3, 4};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 5, a, 4));
+}
+
+void test_allElementsFromAInB_equalElemsAtBorders() {
+    // Arrange
+    int a[2] = {1, 9};
+    int b[5] = {1, 5, 8, 6, 9};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 5, a, 4));
 }
 
 void test_allElementsFromAInB() {
-
+    test_allElementsFromAInB_oneArrayIsEmpty();
+    test_allElementsFromAInB_twoArraysIsEmpty();
+    test_allElementsFromAInB_arrayALargeArrayB();
+    test_allElementsFromAInB_twoArraysIsEqual();
+    test_allElementsFromAInB_BlargeA();
+    test_allElementsFromAInB_equalElemsAtBorders();
 }
 
 void test() {
