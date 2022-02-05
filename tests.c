@@ -319,9 +319,51 @@ void test_differenceTwoArray() {
     test_differenceTwoArray_uniqueOneElem();
 }
 
+void test_symmetricDifferenceTwoArray_equalArrays() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    symmetricDifferenceTwoArray(a, 5, a, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_symmetricDifferenceTwoArray_oneIsEmpty() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    symmetricDifferenceTwoArray(a, 5, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualTwoArrays(c, sizeC, a, sizeC));
+}
+
+void test_symmetricDifferenceTwoArray_equalArrays() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    symmetricDifferenceTwoArray(a, 5, a, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
 void test_symmetricDifferenceTwoArray() {
 
 }
+
 void test() {
     test_intersectionTwoArray();
     test_unionTwoArray();
