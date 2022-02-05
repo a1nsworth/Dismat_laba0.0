@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 
 void intersectionTwoArray(const int *a, size_t sizeA, const int *b, size_t sizeB, int *c, size_t *sizeC);
 
@@ -30,6 +31,6 @@ createOrderArrayByIncreasingBySymmetricDifference(const int *a, size_t sizeA, co
                                                   int *c,
                                                   size_t *sizeC);
 
-bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, const size_t sizeA)
+bool allElemsAOrderInBOrder(const int *b, size_t sizeB, const int *a, size_t sizeA);
 
 #endif //DISMAT_LABA0_0_SET_H
