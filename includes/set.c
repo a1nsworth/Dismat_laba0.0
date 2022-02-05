@@ -164,13 +164,14 @@ bool twoArrayDontHaveEqualElements(const int *a, const size_t sizeA, const int *
     return true;
 }
 
-///
-/// \param a
-/// \param sizeA
-/// \param b
-/// \param sizeB
-/// \param c
-/// \param sizeC
+// Задание 11
+/// Формирует массив C (отсортированный по возрастанию и без повторения элементов) из элементов массива A и элементов массива B (отсортированные по возрастанию).
+/// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeB - размер массива
+/// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
+/// \param sizeC - размер массива
 void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
                                          size_t *sizeC) {
     size_t iReadA = 0;
@@ -186,14 +187,15 @@ void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const
     }
 }
 
-//
-///
-/// \param a
-/// \param sizeA
-/// \param b
-/// \param sizeB
-/// \param c
-/// \param sizeC
+// Задание 11
+/// Формирует массив C (отсортированный по возрастанию) из элементов которые
+/// есть одновременно в массиве A и B (отсортированные по возрастанию).
+/// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeB - размер массива
+/// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
+/// \param sizeC - размер массива
 void
 createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
                                            size_t *sizeC) {
@@ -212,15 +214,13 @@ createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, con
     }
 }
 
-//
-///
-/// \param a
-/// \param sizeA
-/// \param b
-/// \param sizeB
-/// \param c
-/// \param sizeC
-/// \return
+// Вариант 12
+/// Проверяет принадлежность всех элементов из A в B
+/// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeB - размер массива
+/// \return Возвращает true, если все элемент из A содержатся в B, иначе false.
 bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, const size_t sizeA) {
     if (sizeA > sizeB)
         return false;
