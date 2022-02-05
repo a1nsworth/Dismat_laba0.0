@@ -699,7 +699,14 @@ void test_createOrderArrayByIncreasingByUnion_randomPosition() {
 }
 
 void test_createOrderArrayByIncreasingByUnion() {
-
+    test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray();
+    test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays();
+    test_createOrderArrayByIncreasingByUnion_twoArraysIsEqual();
+    test_createOrderArrayByIncreasingByUnion_equalElemsAtBorders();
+    test_createOrderArrayByIncreasingByUnion_oneEqualElemAtBorder();
+    test_createOrderArrayByIncreasingByUnion_elemsArrayALowElemsArrayB();
+    test_createOrderArrayByIncreasingByUnion_elemsArrayBLowElemsArrayA();
+    test_createOrderArrayByIncreasingByUnion_randomPosition();
 }
 
 void test() {
