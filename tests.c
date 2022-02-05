@@ -463,6 +463,245 @@ void test_allElementsFromAInB() {
     test_allElementsFromAInB_equalElemsAtBorders();
 }
 
+void test_isEqualArrays_twoArraysIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 0, a, 0));
+}
+
+void test_isEqualArrays_oneArrayIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(!isEqualArrays(b, 5, a, 0));
+}
+
+void test_isEqualArrays_two_equalArrays() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(isEqualArrays(b, 5, a, 5));
+}
+
+void test_isEqualArrays_two_noEqualElemsAtRightBorder() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 6};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(!isEqualArrays(b, 5, a, 5));
+}
+
+void test_isEqualArrays_two_noEqualElemsAtLestBorder() {
+    // Arrange
+    int a[5] = {9, 2, 3, 4, 5};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(!isEqualArrays(b, 5, a, 5));
+}
+
+void test_isEqualArrays() {
+    test_isEqualArrays_twoArraysIsEmpty();
+    test_isEqualArrays_oneArrayIsEmpty();
+    test_isEqualArrays_two_equalArrays();
+    test_isEqualArrays_two_noEqualElemsAtRightBorder();
+    test_isEqualArrays_two_noEqualElemsAtLestBorder();
+}
+
+void test_twoArrayDontHaveEqualElements_twoArraysIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+
+    // Act and Assert
+    assert(twoArrayDontHaveEqualElements(a, 0, b, 0));
+}
+
+void test_twoArrayDontHaveEqualElements_oneArrayIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[3] = {1, 2, 3};
+
+    // Act and Assert
+    assert(!twoArrayDontHaveEqualElements(a, 0, b, 3));
+}
+
+void test_twoArrayDontHaveEqualElements_twoArraysIsEqual() {
+    // Arrange
+    int a[3] = {1, 2, 3};
+    int b[3] = {1, 2, 3};
+
+    // Act and Assert
+    assert(!twoArrayDontHaveEqualElements(a, 3, b, 3));
+}
+
+void test_twoArrayDontHaveEqualElements_oneEqualElemsAtBorder() {
+    // Arrange
+    int a[5] = {6, 2, 3, 4, 1};
+    int b[5] = {1, 22, 33, 44, 55};
+
+    // Act and Assert
+    assert(!twoArrayDontHaveEqualElements(a, 5, b, 5));
+}
+
+void test_twoArrayDontHaveEqualElements_equalElemsAtBorders() {
+    // Arrange
+    int a[5] = {55, 2, 3, 4, 1};
+    int b[5] = {1, 22, 33, 44, 55};
+
+    // Act and Assert
+    assert(!twoArrayDontHaveEqualElements(a, 5, b, 5));
+}
+
+void test_twoArrayDontHaveEqualElements_equalElemsInCenter() {
+    // Arrange
+    int a[5] = {6, 22, 33, 4, 9};
+    int b[5] = {1, 22, 33, 44, 55};
+
+    // Act and Assert
+    assert(!twoArrayDontHaveEqualElements(a, 3, b, 3));
+}
+
+void test_twoArrayDontHaveEqualElements() {
+    test_twoArrayDontHaveEqualElements_twoArraysIsEmpty();
+    test_twoArrayDontHaveEqualElements_oneArrayIsEmpty();
+    test_twoArrayDontHaveEqualElements_twoArraysIsEqual();
+    test_twoArrayDontHaveEqualElements_oneEqualElemsAtBorder();
+    test_twoArrayDontHaveEqualElements_equalElemsAtBorders();
+    test_twoArrayDontHaveEqualElements_equalElemsInCenter();
+}
+
+void test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray() {
+    // Arrange
+    int a[0] = {};
+    int b[] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 0, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualTwoArrays(c, sizeC, b, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 0, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_createOrderArrayByIncreasingByUnion_twoArraysIsEqual() {
+    // Arrange
+    int a[] = {1, 2, 3, 4, 5};
+    int b[] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualTwoArrays(c, sizeC, a, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_equalElemsAtBorders() {
+    // Arrange
+    int a[] = {1, 10, 11, 12, 13};
+    int b[] = {1, 3, 4, 5, 13};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 8);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 10, 11, 12, 13}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_oneEqualElemAtBorder() {
+    // Arrange
+    int a[] = {9, 10, 11, 12, 13};
+    int b[] = {1, 3, 4, 5, 13};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 9);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 9, 10, 11, 12, 13}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_elemsArrayALowElemsArrayB() {
+    // Arrange
+    int a[] = {20, 21, 22, 23, 24};
+    int b[] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 10);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5, 20, 21, 22, 23, 24}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_elemsArrayBLowElemsArrayA() {
+    // Arrange
+    int b[] = {20, 21, 22, 23, 24};
+    int a[] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 10);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5, 20, 21, 22, 23, 24}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion_randomPosition() {
+    // Arrange
+    int a[] = {1, 5, 9, 13, 17};
+    int b[] = {2, 3, 10, 11, 20};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByUnion(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 10);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 5, 9, 10, 11, 13, 17, 20}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByUnion() {
+
+}
+
 void test() {
     test_intersectionTwoArray();
     test_unionTwoArray();
