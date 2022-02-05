@@ -347,9 +347,10 @@ void test_symmetricDifferenceTwoArray_oneIsEmpty() {
     assert(isEqualTwoArrays(c, sizeC, a, sizeC));
 }
 
-void test_symmetricDifferenceTwoArray_equalArrays() {
+void test_symmetricDifferenceTwoArray_equalAtMiddle() {
     // Arrange
     int a[5] = {1, 2, 3, 4, 5};
+    int b[5] = {3, 4, 5, 6, 7};
     size_t sizeC = 0;
     int c[5];
 
@@ -357,10 +358,53 @@ void test_symmetricDifferenceTwoArray_equalArrays() {
     symmetricDifferenceTwoArray(a, 5, a, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 0);
+    assert(sizeC == 4);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 6, 7}, sizeC));
+}
+
+void test_symmetricDifferenceTwoArray_equalAtBorders() {
+    // Arrange
+    int a[5] = {1, 22, 33, 44, 5};
+    int b[5] = {1, 45, 55, 66, 5};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    symmetricDifferenceTwoArray(a, 5, a, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 6);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {22, 33, 44, 45, 55, 66}, sizeC));
+}
+
+void test_symmetricDifferenceTwoArray_oneEqualAtBorder() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[5] = {9, 8, 7, 6, 1};
+    size_t sizeC = 0;
+    int c[5];
+
+    // Act
+    symmetricDifferenceTwoArray(a, 5, a, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 8);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {2, 3, 4, 5, 9, 8, 7, 6}, sizeC));
 }
 
 void test_symmetricDifferenceTwoArray() {
+    test_symmetricDifferenceTwoArray_equalArrays();
+    test_symmetricDifferenceTwoArray_oneIsEmpty();
+    test_symmetricDifferenceTwoArray_equalAtMiddle();
+    test_symmetricDifferenceTwoArray_equalAtBorders();
+    test_symmetricDifferenceTwoArray_oneEqualAtBorder();
+}
+
+void test_allElementsFromAInB_oneArrayIsEmpty() {
+
+}
+
+void test_allElementsFromAInB() {
 
 }
 
