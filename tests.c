@@ -1009,7 +1009,7 @@ void test_createOrderArrayByIncreasingByDifference_oneEqualAtRightBorder() {
 
     // Assert
     assert(sizeC == 4);
-    assert(isEqualArrays(c, sizeC, (int[]) {5,6,7,8}, sizeC));
+    assert(isEqualArrays(c, sizeC, (int[]) {5, 6, 7, 8}, sizeC));
 }
 
 void test_createOrderArrayByIncreasingByDifference_equalElemsInCenter() {
@@ -1024,7 +1024,7 @@ void test_createOrderArrayByIncreasingByDifference_equalElemsInCenter() {
 
     // Assert
     assert(sizeC == 2);
-    assert(isEqualArrays(c, sizeC, (int[]) {1,9}, sizeC));
+    assert(isEqualArrays(c, sizeC, (int[]) {1, 9}, sizeC));
 }
 
 void test_createOrderArrayByIncreasingByDifference() {
@@ -1035,6 +1035,99 @@ void test_createOrderArrayByIncreasingByDifference() {
     test_createOrderArrayByIncreasingByDifference_oneEqualLeftBorder();
     test_createOrderArrayByIncreasingByDifference_oneEqualAtRightBorder();
     test_createOrderArrayByIncreasingByDifference_equalElemsInCenter();
+}
+
+void test_allElemsAOrderInBOrder_aIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[5] = {1, 2, 3, 4, 5};
+
+    // Act and Assert
+    assert(allElemsAOrderInBOrder(b, 5, a, 0));
+}
+
+void test_allElemsAOrderInBOrder_bIsEmpty() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[0] = {};
+
+    // Act and Assert
+    assert(!allElemsAOrderInBOrder(b, 5, a, 0));
+}
+
+void test_allElemsAOrderInBOrder_aAndBIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+
+    // Act and Assert
+    assert(allElemsAOrderInBOrder(b, 0, a, 0));
+}
+
+void test_allElemsAOrderInBOrder_arrayALargeB() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[4] = {1, 2, 3, 4};
+
+    // Act and Assert
+    assert(allElemsAOrderInBOrder(b, 4, a, 5));
+}
+
+void test_allElemsAOrderInBOrder_arrayBLargeA() {
+    // Arrange
+    int b[5] = {1, 2, 3, 4, 5};
+    int a[4] = {1, 2, 3, 4};
+
+    // Act and Assert
+    assert(allElemsAOrderInBOrder(b, 4, a, 5));
+}
+
+void test_allElemsAOrderInBOrder_notEqualEmlemsAtBorders() {
+    // Arrange
+    int b[5] = {2, 5, 6, 7, 9};
+    int a[5] = {1, 5, 6, 7, 8};
+
+    // Act and Assert
+    assert(!allElemsAOrderInBOrder(b, 5, a, 5));
+}
+
+void test_allElemsAOrderInBOrder_notEqualEmlemsAtLeftBorder() {
+    // Arrange
+    int b[5] = {2, 5, 6, 7, 8};
+    int a[5] = {1, 5, 6, 7, 8};
+
+    // Act and Assert
+    assert(!allElemsAOrderInBOrder(b, 5, a, 5));
+}
+
+void test_allElemsAOrderInBOrder_notEqualEmlemsAtRightBorder() {
+    // Arrange
+    int b[5] = {2, 5, 6, 7, 8};
+    int a[5] = {2, 5, 6, 7, 9};
+
+    // Act and Assert
+    assert(!allElemsAOrderInBOrder(b, 5, a, 5));
+}
+
+void test_allElemsAOrderInBOrder_notEqualEmlemsAtCenter() {
+    // Arrange
+    int b[5] = {1, 5, 6, 7, 8};
+    int a[5] = {1, 2, 3, 4, 9};
+
+    // Act and Assert
+    assert(!allElemsAOrderInBOrder(b, 5, a, 5));
+}
+
+void test_allElemsAOrderInBOrder() {
+    test_allElemsAOrderInBOrder_aIsEmpty();
+    test_allElemsAOrderInBOrder_bIsEmpty();
+    test_allElemsAOrderInBOrder_aAndBIsEmpty();
+    test_allElemsAOrderInBOrder_arrayALargeB();
+    test_allElemsAOrderInBOrder_arrayBLargeA();
+    test_allElemsAOrderInBOrder_notEqualEmlemsAtBorders();
+    test_allElemsAOrderInBOrder_notEqualEmlemsAtLeftBorder();
+    test_allElemsAOrderInBOrder_notEqualEmlemsAtRightBorder();
+    test_allElemsAOrderInBOrder_notEqualEmlemsAtCenter();
 }
 
 void test() {
