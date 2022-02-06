@@ -43,12 +43,34 @@ void intersectionTwoArray(const int *a, const size_t sizeA, const int *b, const 
 /// \param c - адрес ячейки памяти массива в который будет записываться результат
 /// \param sizeC - изначальный размер результирующего массива
 void unionTwoArray(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c, size_t *sizeC) {
-    for (register size_t i = 0; i < sizeA; ++i) {
-        for (register size_t j = 0; j < sizeB; ++j)
-            if (a[i] == b[j]) {
-                c[*sizeC] = a[i];
+    if (sizeA == 0)
+        for (register size_t i = 0; i < sizeB; ++i) {
+            c[*sizeC] = b[i];
+            (*sizeC)++;
+        }
+    else if (sizeB == 0) {
+        for (register size_t i = 0; i < sizeA; ++i) {
+            c[*sizeC] = a[i];
+            (*sizeC)++;
+        }
+    } else {
+        for (register size_t i = 0; i < sizeA; ++i) {
+            c[*sizeC] = a[i];
+            (*sizeC)++;
+        }
+
+        bool elemInArray = false;
+        for (register size_t i = 0; i < sizeB; ++i) {
+            for (register size_t j = 0; j < sizeA && !elemInArray; ++j)
+                if (b[i] == a[j])
+                    elemInArray = true;
+
+            if (!elemInArray) {
+                c[*sizeC] = b[i];
                 (*sizeC)++;
             }
+            elemInArray = false;
+        }
     }
 }
 
@@ -72,11 +94,12 @@ void differenceTwoArray(const int *a, const size_t sizeA, const int *b, const si
             (*sizeC)++;
             elemAInArrayB = false;
         }
+        elemAInArrayB = false;
     }
 }
 
 // Вариант 4
-/// Симетрическая разность двух массивов, не содержащих одниковых элементов
+/// Симметрическая разность двух массивов, не содержащих одниковых элементов
 /// \param a - адрес ячейки памяти массива
 /// \param sizeA - размер массива
 /// \param b - адрес ячейки памяти массива
@@ -84,7 +107,8 @@ void differenceTwoArray(const int *a, const size_t sizeA, const int *b, const si
 /// \param c - адрес ячейки памяти массива в который будет записываться результат
 /// \param sizeC - изначальный размер результирующего массива
 void
-symmetricDifferenceTwoArray(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c, size_t *sizeC) {
+symmetricDifferenceTwoArray(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+                            size_t *sizeC) {
     bool elemAInArrayB = false;
     for (register size_t i = 0; i < sizeA; ++i) {
         for (register size_t j = 0; j < sizeB && !elemAInArrayB; ++j)
@@ -96,12 +120,13 @@ symmetricDifferenceTwoArray(const int *a, const size_t sizeA, const int *b, cons
             (*sizeC)++;
             elemAInArrayB = false;
         }
+        elemAInArrayB = false;
     }
 
     bool elemBInArrayA = false;
     for (register size_t i = 0; i < sizeB; ++i) {
         for (register size_t j = 0; j < sizeA && !elemBInArrayA; ++j)
-            if (a[i] == b[j])
+            if (b[i] == a[j])
                 elemBInArrayA = true;
 
         if (!elemBInArrayA) {
@@ -109,6 +134,7 @@ symmetricDifferenceTwoArray(const int *a, const size_t sizeA, const int *b, cons
             (*sizeC)++;
             elemBInArrayA = false;
         }
+        elemBInArrayA = false;
     }
 }
 
@@ -123,12 +149,18 @@ bool allElementsFromAInB(const int *b, const size_t sizeB, const int *a, const s
     if (sizeB < sizeA)
         return false;
 
-    for (register size_t i = 0; i < sizeB; ++i)
-        for (register size_t j = 0; j < sizeA; ++j)
-            if (b[i] != a[j])
-                return false;
+    bool isEqual = true;
+    for (register size_t i = 0; i < sizeA; ++i)
+        for (register size_t j = 0; j < sizeB; ++j) {
+            if (a[i] != b[j])
+                isEqual = false;
+            else {
+                isEqual = true;
+                break;
+            }
+        }
 
-    return true;
+    return isEqual;
 }
 
 // Вариант 6
@@ -143,9 +175,8 @@ bool isEqualArrays(const int *a, const size_t sizeA, const int *b, const size_t 
         return false;
 
     for (register size_t i = 0; i < sizeA; ++i)
-        for (register size_t j = 0; j < sizeB; ++j)
-            if (a[i] != b[j])
-                return false;
+        if (a[i] != b[i])
+            return false;
 
     return true;
 }
@@ -174,12 +205,11 @@ bool twoArrayDontHaveEqualElements(const int *a, const size_t sizeA, const int *
 /// \param sizeB - размер массива
 /// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
 /// \param sizeC - размер массива
-void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
-                                         size_t *sizeC) {
+void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c, size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
     while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadB == sizeB || a[iReadA] < b[sizeB]) {
+        if (iReadB == sizeB || iReadA < sizeA && a[iReadA] < b[iReadB]) {
             c[iReadA + iReadB] = a[iReadA];
             iReadA++;
         } else {
@@ -187,6 +217,8 @@ void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const
             iReadB++;
         }
     }
+
+    (*sizeC) = iReadA + iReadB;
 }
 
 // Задание 11
@@ -199,14 +231,15 @@ void createOrderArrayByIncreasingByUnion(const int *a, const size_t sizeA, const
 /// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
 /// \param sizeC - размер массива
 void
-createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, const int *b, const size_t sizeB,
+                                           int *c,
                                            size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
     while (iReadA < sizeA || iReadB < sizeB) {
-        if (a[iReadA] < b[iReadB]) {
+        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
             iReadA++;
-        } else if (a[iReadA] > b[iReadB]) {
+        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
             iReadB++;
         } else {
             c[iReadA + iReadB] = a[iReadA];
@@ -231,9 +264,9 @@ bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, cons
     size_t iReadB = 0;
     unsigned counterEquals = 0;
     while (iReadA < sizeA || iReadB < sizeB) {
-        if (a[iReadA] < b[iReadB])
+        if (iReadA < sizeA && a[iReadA] < b[iReadB])
             iReadA++;
-        else if (a[iReadA] > b[iReadB])
+        else if (iReadB < sizeB && a[iReadA] > b[iReadB])
             iReadB++;
         else {
             counterEquals++;
@@ -244,6 +277,7 @@ bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, cons
 
     return counterEquals == sizeA;
 }
+
 
 
 

@@ -19,8 +19,8 @@ bool isEqualArrays(const int *b, size_t sizeB, const int *a, size_t sizeA);
 
 bool twoArrayDontHaveEqualElements(const int *a, size_t sizeA, const int *b, size_t sizeB);
 
-void createOrderArrayByIncreasingByUnion(const int *a, size_t sizeA, const int *b, size_t sizeB, int *c,
-                                         size_t *sizeC);
+void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+                                    size_t *sizeC);
 
 void
 createOrderArrayByIncreasingByIntersection(const int *a, size_t sizeA, const int *b, size_t sizeB, int *c,
