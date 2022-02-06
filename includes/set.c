@@ -248,6 +248,8 @@ createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, con
             iReadB++;
         }
     }
+
+    (*sizeC) = iReadA + iReadB;
 }
 
 // Задание 10
@@ -277,6 +279,8 @@ createOrderArrayByIncreasingByDifference(const int *a, const size_t sizeA, const
             iReadB++;
         }
     }
+
+    (*sizeC) = iReadA + iReadB;
 }
 
 // Задание 11
@@ -307,6 +311,8 @@ createOrderArrayByIncreasingBySymmetricDifference(const int *a, const size_t siz
             iReadB++;
         }
     }
+
+    (*sizeC) = iReadA + iReadB;
 }
 
 // Вариант 12
