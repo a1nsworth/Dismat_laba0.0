@@ -197,7 +197,7 @@ bool twoArrayDontHaveEqualElements(const int *a, const size_t sizeA, const int *
     return true;
 }
 
-// Задание 11
+// Задание 8
 /// Формирует массив C (отсортированный по возрастанию и без повторения элементов) из элементов массива A и элементов массива B (отсортированные по возрастанию).
 /// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
 /// \param sizeA - размер массива
@@ -205,7 +205,8 @@ bool twoArrayDontHaveEqualElements(const int *a, const size_t sizeA, const int *
 /// \param sizeB - размер массива
 /// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
 /// \param sizeC - размер массива
-void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c, size_t *sizeC) {
+void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int *b, const size_t sizeB, int *c,
+                                    size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
     while (iReadA < sizeA || iReadB < sizeB) {
@@ -221,7 +222,7 @@ void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int 
     (*sizeC) = iReadA + iReadB;
 }
 
-// Задание 11
+// Задание 9
 /// Формирует массив C (отсортированный по возрастанию) из элементов которые
 /// есть одновременно в массиве A и B (отсортированные по возрастанию).
 /// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
@@ -240,6 +241,65 @@ createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, con
         if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
             iReadA++;
         } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
+            iReadB++;
+        } else {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+            iReadB++;
+        }
+    }
+}
+
+// Задание 10
+/// Формирует массив C (отсортированный по возрастанию) из элементов которые
+/// есть в массиве A, но нет в массиве B (отсортированные по возрастанию).
+/// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeB - размер массива
+/// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
+/// \param sizeC - размер массива
+void
+createOrderArrayByIncreasingByDifference(const int *a, const size_t sizeA, const int *b, const size_t sizeB,
+                                         int *c,
+                                         size_t *sizeC) {
+    size_t iReadA = 0;
+    size_t iReadB = 0;
+    while (iReadA < sizeA || iReadB < sizeB) {
+        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
+            iReadB++;
+        } else {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+            iReadB++;
+        }
+    }
+}
+
+// Задание 11
+/// Формирует массив C (отсортированный по возрастанию) из элементов которые
+/// есть в массиве A, но нет в массиве B (отсортированные по возрастанию).
+/// \param a - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeA - размер массива
+/// \param b - адрес нулевой ячейки памяти массива (отсортированный по возрастанию)
+/// \param sizeB - размер массива
+/// \param c - адрес нулевой ячейки памяти массива, куда будет записываться результат
+/// \param sizeC - размер массива
+void
+createOrderArrayByIncreasingBySymmetricDifference(const int *a, const size_t sizeA, const int *b, const size_t sizeB,
+                                                  int *c,
+                                                  size_t *sizeC) {
+    size_t iReadA = 0;
+    size_t iReadB = 0;
+    while (iReadA < sizeA || iReadB < sizeB) {
+        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
+            c[iReadA + iReadB] = a[iReadA];
+            iReadA++;
+        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
+            c[iReadA + iReadB] = b[iReadB];
             iReadB++;
         } else {
             c[iReadA + iReadB] = a[iReadA];

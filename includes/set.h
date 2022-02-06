@@ -27,6 +27,11 @@ createOrderArrayByIncreasingByIntersection(const int *a, size_t sizeA, const int
                                            size_t *sizeC);
 
 void
+createOrderArrayByIncreasingByDifference(const int *a, size_t sizeA, const int *b, size_t sizeB,
+                                         int *c,
+                                         size_t *sizeC);
+
+void
 createOrderArrayByIncreasingBySymmetricDifference(const int *a, size_t sizeA, const int *b, size_t sizeB,
                                                   int *c,
                                                   size_t *sizeC);

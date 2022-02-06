@@ -699,6 +699,105 @@ void test_createOrderArrayByIncreasingByUnion_randomPosition() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 5, 9, 10, 11, 13, 17, 20}, sizeC));
 }
 
+void test_createOrderArrayByIncreasingByIntersection_aIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[5] = {2, 3, 10, 11, 20};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 0, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_createOrderArrayByIncreasingByIntersection_bIsEmpty() {
+    // Arrange
+    int a[5] = {2, 3, 10, 11, 20};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 5, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_createOrderArrayByIncreasingByIntersection_twoArraysAreEqual() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualArrays(c, sizeC, a, sizeC));
+
+}
+
+void test_createOrderArrayByIncreasingByIntersection_notEqualElemsAtBorders() {
+    // Arrange
+    int a[5] = {0, 2, 3, 4, 9};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 3);
+    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4}, sizeC));
+
+}
+
+void test_createOrderArrayByIncreasingByIntersection_oneNotEqualElemsAtRightBorder() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 9};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 4);
+    assert(isEqualArrays(c, sizeC, (int[]) {1, 2, 3, 4}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByIntersection_randomPosition() {
+    // Arrange
+    int a[5] = {5, 8, 10, 11, 12};
+    int b[5] = {1, 5, 8, 10, 11};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 4);
+    assert(isEqualArrays(c, sizeC, (int[]) {5, 8, 10, 11}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByIntersection() {
+    test_createOrderArrayByIncreasingByIntersection_aIsEmpty();
+    test_createOrderArrayByIncreasingByIntersection_bIsEmpty();
+    test_createOrderArrayByIncreasingByIntersection_twoArraysAreEqual();
+    test_createOrderArrayByIncreasingByIntersection_notEqualElemsAtBorders();
+    test_createOrderArrayByIncreasingByIntersection_oneNotEqualElemsAtRightBorder();
+    test_createOrderArrayByIncreasingByIntersection_randomPosition();
+}
+
 void test_createOrderArrayByIncreasingByUnion() {
     test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray();
     test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays();
@@ -710,6 +809,234 @@ void test_createOrderArrayByIncreasingByUnion() {
     test_createOrderArrayByIncreasingByUnion_randomPosition();
 }
 
+void test_createOrderArrayByIncreasingBySymmetricDifference_leftIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 0, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualArrays(c, sizeC, b, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_rightIsEmpty() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualArrays(c, sizeC, b, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_twoArraysAreEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 0, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsAtBorders() {
+    // Arrange
+    int a[5] = {1, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 9};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 6);
+    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 6, 7, 8}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualLeftBorder() {
+    // Arrange
+    int a[5] = {1, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 7);
+    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 5, 6, 7, 8}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualAtRightBorder() {
+    // Arrange
+    int a[5] = {5, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 9};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 7);
+    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 5, 6, 7, 8}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsInCenter() {
+    // Arrange
+    int a[5] = {1, 5, 6, 7, 9};
+    int b[5] = {2, 5, 6, 7, 10};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 4);
+    assert(isEqualArrays(c, sizeC, (int[]) {1, 2, 9, 10}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingBySymmetricDifference() {
+    test_createOrderArrayByIncreasingBySymmetricDifference_leftIsEmpty();
+    test_createOrderArrayByIncreasingBySymmetricDifference_rightIsEmpty();
+    test_createOrderArrayByIncreasingBySymmetricDifference_twoArraysAreEmpty();
+    test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsAtBorders();
+    test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualLeftBorder();
+    test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualAtRightBorder();
+    test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsInCenter();
+}
+
+void test_createOrderArrayByIncreasingByDifference_leftIsEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 0, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualArrays(c, sizeC, b, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference_rightIsEmpty() {
+    // Arrange
+    int a[5] = {1, 2, 3, 4, 5};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 5, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 5);
+    assert(isEqualArrays(c, sizeC, b, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference_twoArraysAreEmpty() {
+    // Arrange
+    int a[0] = {};
+    int b[0] = {};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 0, b, 0, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 0);
+}
+
+void test_createOrderArrayByIncreasingByDifference_equalElemsAtBorders() {
+    // Arrange
+    int a[5] = {1, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 9};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 3);
+    assert(isEqualArrays(c, sizeC, (int[]) {6, 7, 8}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference_oneEqualLeftBorder() {
+    // Arrange
+    int a[5] = {1, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 5};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 4);
+    assert(isEqualArrays(c, sizeC, (int[]) {6, 7, 8, 9}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference_oneEqualAtRightBorder() {
+    // Arrange
+    int a[5] = {5, 6, 7, 8, 9};
+    int b[5] = {1, 2, 3, 4, 9};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 4);
+    assert(isEqualArrays(c, sizeC, (int[]) {5,6,7,8}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference_equalElemsInCenter() {
+    // Arrange
+    int a[5] = {1, 5, 6, 7, 9};
+    int b[5] = {2, 5, 6, 7, 10};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByDifference(a, 5, b, 5, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualArrays(c, sizeC, (int[]) {1,9}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByDifference() {
+    test_createOrderArrayByIncreasingByDifference_leftIsEmpty();
+    test_createOrderArrayByIncreasingByDifference_rightIsEmpty();
+    test_createOrderArrayByIncreasingByDifference_twoArraysAreEmpty();
+    test_createOrderArrayByIncreasingByDifference_equalElemsAtBorders();
+    test_createOrderArrayByIncreasingByDifference_oneEqualLeftBorder();
+    test_createOrderArrayByIncreasingByDifference_oneEqualAtRightBorder();
+    test_createOrderArrayByIncreasingByDifference_equalElemsInCenter();
+}
+
 void test() {
     test_intersectionTwoArray();
     test_unionTwoArray();
@@ -719,9 +1046,10 @@ void test() {
     test_isEqualArrays();
     test_twoArrayDontHaveEqualElements();
     test_createOrderArrayByIncreasingByUnion();
-//    test_createOrderArrayByIncreasingByIntersection();
-//    test_createOrderArrayByIncreasingBySymmetricDifference();
-//    test_allElemsAOrderInBOrder();
+    test_createOrderArrayByIncreasingByIntersection();
+    test_createOrderArrayByIncreasingByDifference();
+    test_createOrderArrayByIncreasingBySymmetricDifference();
+    test_allElemsAOrderInBOrder();
 }
 
 int main() {
