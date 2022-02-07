@@ -934,8 +934,7 @@ void test_createOrderArrayByIncreasingByDifference_leftIsEmpty() {
     createOrderArrayByIncreasingByDifference(a, 0, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 5);
-    assert(isEqualArrays(c, sizeC, b, sizeC));
+    assert(sizeC == 0);
 }
 
 void test_createOrderArrayByIncreasingByDifference_rightIsEmpty() {

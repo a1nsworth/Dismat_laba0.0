@@ -264,20 +264,20 @@ createOrderArrayByIncreasingByDifference(const int *a, const size_t sizeA, const
                                          size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
-    while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
-            c[iReadA + iReadB] = a[iReadA];
-            iReadA++;
-        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
+    while (iReadA < sizeA && iReadB < sizeB) {
+        if (a[iReadA] == b[iReadB]) {
             iReadB++;
-        } else {
-            c[iReadA + iReadB] = a[iReadA];
             iReadA++;
+        } else if (a[iReadA] < b[iReadB]) {
+            iReadA++;
+        } else {
+            c[(*sizeC)++] = b[iReadB];
             iReadB++;
         }
     }
 
-    (*sizeC) = iReadA + iReadB;
+    for (register size_t i = iReadA; i < sizeA; ++i)
+        c[(*sizeC)++] = a[i];
 }
 
 // Задание 11
