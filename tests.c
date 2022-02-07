@@ -702,7 +702,7 @@ void test_mergeOrderArrayByIncreasing_randomPosition() {
 void test_mergeOrderArrayByIncreasing_aLargeB() {
     // Arrange
     int a[] = {10, 12, 14, 16, 18, 20, 22};
-    int b[] = {14, 22};
+    int b[] = {9, 23};
     size_t sizeC = 0;
     int c[10];
 
@@ -710,23 +710,23 @@ void test_mergeOrderArrayByIncreasing_aLargeB() {
     mergeToOrderByIncreasingArrays(a, 7, b, 2, c, &sizeC);
 
     // Assert
-    assert(sizeC == 2);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {14, 22}, sizeC));
+    assert(sizeC == 9);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {9, 10, 12, 14, 16, 18, 20, 22, 23}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_bLargeA() {
     // Arrange
-    int a[] = {14, 22};
     int b[] = {10, 12, 14, 16, 18, 20, 22};
+    int a[] = {9, 23};
     size_t sizeC = 0;
     int c[10];
 
     // Act
-    mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
+    mergeToOrderByIncreasingArrays(a, 2, a, 7, c, &sizeC);
 
     // Assert
-    assert(sizeC == 2);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {14, 22}, sizeC));
+    assert(sizeC == 9);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {9, 10, 12, 14, 16, 18, 20, 22, 23}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_aLargeBAndEqualElemsAtBorders() {
@@ -740,8 +740,8 @@ void test_mergeOrderArrayByIncreasing_aLargeBAndEqualElemsAtBorders() {
     mergeToOrderByIncreasingArrays(a, 7, b, 2, c, &sizeC);
 
     // Assert
-    assert(sizeC == 2);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+    assert(sizeC == 9);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 10, 12, 14, 16, 18, 20, 22, 22}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
@@ -756,7 +756,7 @@ void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
 
     // Assert
     assert(sizeC == 2);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 10, 12, 14, 16, 18, 20, 22, 22}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing() {
