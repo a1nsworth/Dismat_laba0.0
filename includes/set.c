@@ -237,19 +237,16 @@ createOrderArrayByIncreasingByIntersection(const int *a, const size_t sizeA, con
                                            size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
-    while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
-            iReadA++;
-        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
-            iReadB++;
-        } else {
-            c[iReadA + iReadB] = a[iReadA];
+    while (iReadA < sizeA && iReadB < sizeB) {
+        if (a[iReadA] == b[iReadB]) {
+            c[(*sizeC)++] = a[iReadA];
             iReadA++;
             iReadB++;
-        }
+        } else if (a[iReadA] < b[iReadB]) {
+            iReadA++;
+        } else
+            iReadB++;
     }
-
-    (*sizeC) = iReadA + iReadB;
 }
 
 // Задание 10
