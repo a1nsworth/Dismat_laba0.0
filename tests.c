@@ -722,7 +722,7 @@ void test_mergeOrderArrayByIncreasing_bLargeA() {
     int c[10];
 
     // Act
-    mergeToOrderByIncreasingArrays(a, 2, a, 7, c, &sizeC);
+    mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
 
     // Assert
     assert(sizeC == 9);
@@ -755,7 +755,7 @@ void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
     mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
 
     // Assert
-    assert(sizeC == 2);
+    assert(sizeC == 9);
     assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 10, 12, 14, 16, 18, 20, 22, 22}, sizeC));
 }
 
@@ -864,6 +864,66 @@ void test_createOrderArrayByIncreasingByIntersection_randomPosition() {
     assert(isEqualArrays(c, sizeC, (int[]) {5, 8, 10, 11}, sizeC));
 }
 
+void test_createOrderArrayByIncreasingByIntersection_aLargeB() {
+    // Arrange
+    int a[] = {10, 12, 14, 16, 18, 20, 22};
+    int b[] = {9, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 7, b, 2, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 1);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {22}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByIntersection_bLargeA() {
+    // Arrange
+    int b[] = {10, 12, 14, 16, 18, 20, 22};
+    int a[] = {9, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 2, b, 7, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 1);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {22}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByIntersection_aLargeBAndEqualElemsAtBorders() {
+    // Arrange
+    int a[] = {10, 12, 14, 16, 18, 20, 22};
+    int b[] = {10, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 7, b, 2, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+}
+
+void test_createOrderArrayByIncreasingByIntersection_bLargeAAndEqualElemsAtBorders() {
+    // Arrange
+    int a[] = {10, 22};
+    int b[] = {10, 12, 14, 16, 18, 20, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    createOrderArrayByIncreasingByIntersection(a, 2, b, 7, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+}
+
 void test_createOrderArrayByIncreasingByIntersection() {
     test_createOrderArrayByIncreasingByIntersection_aIsEmpty();
     test_createOrderArrayByIncreasingByIntersection_bIsEmpty();
@@ -871,8 +931,11 @@ void test_createOrderArrayByIncreasingByIntersection() {
     test_createOrderArrayByIncreasingByIntersection_notEqualElemsAtBorders();
     test_createOrderArrayByIncreasingByIntersection_oneNotEqualElemsAtRightBorder();
     test_createOrderArrayByIncreasingByIntersection_randomPosition();
+    test_createOrderArrayByIncreasingByIntersection_aLargeB();
+    test_createOrderArrayByIncreasingByIntersection_bLargeA();
+    test_createOrderArrayByIncreasingByIntersection_aLargeBAndEqualElemsAtBorders();
+    test_createOrderArrayByIncreasingByIntersection_bLargeAAndEqualElemsAtBorders();
 }
-
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_leftIsEmpty() {
     // Arrange
