@@ -580,7 +580,7 @@ void test_twoArrayDontHaveEqualElements() {
     test_twoArrayDontHaveEqualElements_equalElemsInCenter();
 }
 
-void test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray() {
+void test_mergeOrderArrayByIncreasing_oneIsEmptyArray() {
     // Arrange
     int a[0] = {};
     int b[] = {1, 2, 3, 4, 5};
@@ -595,7 +595,7 @@ void test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray() {
     assert(isEqualTwoArrays(c, sizeC, b, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays() {
+void test_mergeOrderArrayByIncreasing_twoIsEmptyArrays() {
     // Arrange
     int a[0] = {};
     int b[0] = {};
@@ -609,7 +609,7 @@ void test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays() {
     assert(sizeC == 0);
 }
 
-void test_createOrderArrayByIncreasingByUnion_twoArraysIsEqual() {
+void test_mergeOrderArrayByIncreasing_twoArraysIsEqual() {
     // Arrange
     int a[] = {1, 2, 3, 4, 5};
     int b[] = {1, 2, 3, 4, 5};
@@ -624,7 +624,7 @@ void test_createOrderArrayByIncreasingByUnion_twoArraysIsEqual() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_equalElemsAtBorders() {
+void test_mergeOrderArrayByIncreasing_equalElemsAtBorders() {
     // Arrange
     int a[] = {1, 10, 11, 12, 13};
     int b[] = {1, 3, 4, 5, 13};
@@ -639,7 +639,7 @@ void test_createOrderArrayByIncreasingByUnion_equalElemsAtBorders() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 1, 3, 4, 5, 10, 11, 12, 13, 13}, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_oneEqualElemAtBorder() {
+void test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder() {
     // Arrange
     int a[] = {9, 10, 11, 12, 13};
     int b[] = {1, 3, 4, 5, 13};
@@ -654,7 +654,7 @@ void test_createOrderArrayByIncreasingByUnion_oneEqualElemAtBorder() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 9, 10, 11, 12, 13, 13}, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_elemsArrayALowElemsArrayB() {
+void test_mergeOrderArrayByIncreasing_elemsArrayALowElemsArrayB() {
     // Arrange
     int a[] = {20, 21, 22, 23, 24};
     int b[] = {1, 2, 3, 4, 5};
@@ -669,7 +669,7 @@ void test_createOrderArrayByIncreasingByUnion_elemsArrayALowElemsArrayB() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5, 20, 21, 22, 23, 24}, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_elemsArrayBLowElemsArrayA() {
+void test_mergeOrderArrayByIncreasing_elemsArrayBLowElemsArrayA() {
     // Arrange
     int b[] = {20, 21, 22, 23, 24};
     int a[] = {1, 2, 3, 4, 5};
@@ -684,7 +684,7 @@ void test_createOrderArrayByIncreasingByUnion_elemsArrayBLowElemsArrayA() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5, 20, 21, 22, 23, 24}, sizeC));
 }
 
-void test_createOrderArrayByIncreasingByUnion_randomPosition() {
+void test_mergeOrderArrayByIncreasing_randomPosition() {
     // Arrange
     int a[] = {1, 5, 9, 13, 17};
     int b[] = {2, 3, 10, 11, 20};
@@ -798,15 +798,15 @@ void test_createOrderArrayByIncreasingByIntersection() {
     test_createOrderArrayByIncreasingByIntersection_randomPosition();
 }
 
-void test_createOrderArrayByIncreasingByUnion() {
-    test_createOrderArrayByIncreasingByUnion_oneIsEmptyArray();
-    test_createOrderArrayByIncreasingByUnion_twoIsEmptyArrays();
-    test_createOrderArrayByIncreasingByUnion_twoArraysIsEqual();
-    test_createOrderArrayByIncreasingByUnion_equalElemsAtBorders();
-    test_createOrderArrayByIncreasingByUnion_oneEqualElemAtBorder();
-    test_createOrderArrayByIncreasingByUnion_elemsArrayALowElemsArrayB();
-    test_createOrderArrayByIncreasingByUnion_elemsArrayBLowElemsArrayA();
-    test_createOrderArrayByIncreasingByUnion_randomPosition();
+void test_mergeOrderArrayByIncreasing() {
+    test_mergeOrderArrayByIncreasing_oneIsEmptyArray();
+    test_mergeOrderArrayByIncreasing_twoIsEmptyArrays();
+    test_mergeOrderArrayByIncreasing_twoArraysIsEqual();
+    test_mergeOrderArrayByIncreasing_equalElemsAtBorders();
+    test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder();
+    test_mergeOrderArrayByIncreasing_elemsArrayALowElemsArrayB();
+    test_mergeOrderArrayByIncreasing_elemsArrayBLowElemsArrayA();
+    test_mergeOrderArrayByIncreasing_randomPosition();
 }
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_leftIsEmpty() {
@@ -1137,7 +1137,7 @@ void test() {
     test_allElementsFromAInB();
     test_isEqualArrays();
     test_twoArrayDontHaveEqualElements();
-    test_createOrderArrayByIncreasingByUnion();
+    test_mergeOrderArrayByIncreasing();
     test_createOrderArrayByIncreasingByIntersection();
     test_createOrderArrayByIncreasingByDifference();
     test_createOrderArrayByIncreasingBySymmetricDifference();
