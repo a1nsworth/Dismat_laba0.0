@@ -269,9 +269,9 @@ createOrderArrayByIncreasingByDifference(const int *a, const size_t sizeA, const
             iReadB++;
             iReadA++;
         } else if (a[iReadA] < b[iReadB]) {
+            c[(*sizeC)++] = a[iReadA];
             iReadA++;
         } else {
-            c[(*sizeC)++] = b[iReadB];
             iReadB++;
         }
     }
@@ -296,20 +296,17 @@ createOrderArrayByIncreasingBySymmetricDifference(const int *a, const size_t siz
     size_t iReadA = 0;
     size_t iReadB = 0;
     while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadA < sizeA && a[iReadA] < b[iReadB]) {
-            c[iReadA + iReadB] = a[iReadA];
+        if (iReadB == sizeB || iReadA < sizeA && a[iReadA] < b[iReadB]) {
+            c[(*sizeC)++] = a[iReadA];
             iReadA++;
-        } else if (iReadB < sizeB && a[iReadA] > b[iReadB]) {
-            c[iReadA + iReadB] = b[iReadB];
+        } else if (iReadA == sizeA || iReadB < sizeB && a[iReadA] > b[iReadB]) {
+            c[(*sizeC)++] = b[iReadB];
             iReadB++;
         } else {
-            c[iReadA + iReadB] = a[iReadA];
             iReadA++;
             iReadB++;
         }
     }
-
-    (*sizeC) = iReadA + iReadB;
 }
 
 // Вариант 12
@@ -326,10 +323,10 @@ bool allElemsAOrderInBOrder(const int *b, const size_t sizeB, const int *a, cons
     size_t iReadA = 0;
     size_t iReadB = 0;
     unsigned counterEquals = 0;
-    while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadA < sizeA && a[iReadA] < b[iReadB])
+    while (iReadA < sizeA && iReadB < sizeB) {
+        if (a[iReadA] < b[iReadB])
             iReadA++;
-        else if (iReadB < sizeB && a[iReadA] > b[iReadB])
+        else if (a[iReadA] > b[iReadB])
             iReadB++;
         else {
             counterEquals++;

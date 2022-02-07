@@ -879,8 +879,8 @@ void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualLeftBorder()
     createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 7);
-    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 5, 6, 7, 8}, sizeC));
+    assert(sizeC == 8);
+    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 5, 6, 7, 8, 9}, sizeC));
 }
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualAtRightBorder() {
@@ -894,8 +894,8 @@ void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualAtRightBorde
     createOrderArrayByIncreasingBySymmetricDifference(a, 5, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 7);
-    assert(isEqualArrays(c, sizeC, (int[]) {2, 3, 4, 5, 6, 7, 8}, sizeC));
+    assert(sizeC == 8);
+    assert(isEqualArrays(c, sizeC, (int[]) {1,2, 3, 4, 5, 6, 7, 8}, sizeC));
 }
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsInCenter() {
@@ -1051,7 +1051,7 @@ void test_allElemsAOrderInBOrder_bIsEmpty() {
     int b[0] = {};
 
     // Act and Assert
-    assert(!allElemsAOrderInBOrder(b, 5, a, 0));
+    assert(!allElemsAOrderInBOrder(b, 0, a, 5));
 }
 
 void test_allElemsAOrderInBOrder_aAndBIsEmpty() {
@@ -1069,7 +1069,7 @@ void test_allElemsAOrderInBOrder_arrayALargeB() {
     int b[4] = {1, 2, 3, 4};
 
     // Act and Assert
-    assert(allElemsAOrderInBOrder(b, 4, a, 5));
+    assert(!allElemsAOrderInBOrder(b, 4, a, 5));
 }
 
 void test_allElemsAOrderInBOrder_arrayBLargeA() {
@@ -1078,7 +1078,7 @@ void test_allElemsAOrderInBOrder_arrayBLargeA() {
     int a[4] = {1, 2, 3, 4};
 
     // Act and Assert
-    assert(allElemsAOrderInBOrder(b, 4, a, 5));
+    assert(allElemsAOrderInBOrder(b, 5, a, 4));
 }
 
 void test_allElemsAOrderInBOrder_notEqualEmlemsAtBorders() {
