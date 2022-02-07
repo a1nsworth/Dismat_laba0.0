@@ -699,6 +699,81 @@ void test_mergeOrderArrayByIncreasing_randomPosition() {
     assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 5, 9, 10, 11, 13, 17, 20}, sizeC));
 }
 
+void test_mergeOrderArrayByIncreasing_aLargeB() {
+    // Arrange
+    int a[] = {10, 12, 14, 16, 18, 20, 22};
+    int b[] = {14, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    mergeToOrderByIncreasingArrays(a, 7, b, 2, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {14, 22}, sizeC));
+}
+
+void test_mergeOrderArrayByIncreasing_bLargeA() {
+    // Arrange
+    int a[] = {14, 22};
+    int b[] = {10, 12, 14, 16, 18, 20, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {14, 22}, sizeC));
+}
+
+void test_mergeOrderArrayByIncreasing_aLargeBAndEqualElemsAtBorders() {
+    // Arrange
+    int a[] = {10, 12, 14, 16, 18, 20, 22};
+    int b[] = {10, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    mergeToOrderByIncreasingArrays(a, 7, b, 2, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+}
+
+void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
+    // Arrange
+    int a[] = {10, 22};
+    int b[] = {10, 12, 14, 16, 18, 20, 22};
+    size_t sizeC = 0;
+    int c[10];
+
+    // Act
+    mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
+
+    // Assert
+    assert(sizeC == 2);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 22}, sizeC));
+}
+
+void test_mergeOrderArrayByIncreasing() {
+    test_mergeOrderArrayByIncreasing_oneIsEmptyArray();
+    test_mergeOrderArrayByIncreasing_twoIsEmptyArrays();
+    test_mergeOrderArrayByIncreasing_twoArraysIsEqual();
+    test_mergeOrderArrayByIncreasing_equalElemsAtBorders();
+    test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder();
+    test_mergeOrderArrayByIncreasing_elemsArrayALowElemsArrayB();
+    test_mergeOrderArrayByIncreasing_elemsArrayBLowElemsArrayA();
+    test_mergeOrderArrayByIncreasing_randomPosition();
+    test_mergeOrderArrayByIncreasing_aLargeB();
+    test_mergeOrderArrayByIncreasing_bLargeA();
+    test_mergeOrderArrayByIncreasing_aLargeBAndEqualElemsAtBorders();
+    test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders();
+}
+
 void test_createOrderArrayByIncreasingByIntersection_aIsEmpty() {
     // Arrange
     int a[0] = {};
@@ -798,16 +873,6 @@ void test_createOrderArrayByIncreasingByIntersection() {
     test_createOrderArrayByIncreasingByIntersection_randomPosition();
 }
 
-void test_mergeOrderArrayByIncreasing() {
-    test_mergeOrderArrayByIncreasing_oneIsEmptyArray();
-    test_mergeOrderArrayByIncreasing_twoIsEmptyArrays();
-    test_mergeOrderArrayByIncreasing_twoArraysIsEqual();
-    test_mergeOrderArrayByIncreasing_equalElemsAtBorders();
-    test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder();
-    test_mergeOrderArrayByIncreasing_elemsArrayALowElemsArrayB();
-    test_mergeOrderArrayByIncreasing_elemsArrayBLowElemsArrayA();
-    test_mergeOrderArrayByIncreasing_randomPosition();
-}
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_leftIsEmpty() {
     // Arrange
