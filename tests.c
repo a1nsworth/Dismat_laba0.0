@@ -895,7 +895,7 @@ void test_createOrderArrayByIncreasingBySymmetricDifference_oneEqualAtRightBorde
 
     // Assert
     assert(sizeC == 8);
-    assert(isEqualArrays(c, sizeC, (int[]) {1,2, 3, 4, 5, 6, 7, 8}, sizeC));
+    assert(isEqualArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5, 6, 7, 8}, sizeC));
 }
 
 void test_createOrderArrayByIncreasingBySymmetricDifference_equalElemsInCenter() {
