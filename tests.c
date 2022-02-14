@@ -620,8 +620,8 @@ void test_mergeOrderArrayByIncreasing_twoArraysIsEqual() {
     mergeToOrderByIncreasingArrays(a, 5, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 10);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 1, 2, 2, 3, 3, 4, 4, 5, 5}, sizeC));
+    assert(sizeC == 5);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 2, 3, 4, 5}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_equalElemsAtBorders() {
@@ -635,8 +635,8 @@ void test_mergeOrderArrayByIncreasing_equalElemsAtBorders() {
     mergeToOrderByIncreasingArrays(a, 5, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 10);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 1, 3, 4, 5, 10, 11, 12, 13, 13}, sizeC));
+    assert(sizeC == 8);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 10, 11, 12, 13}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder() {
@@ -650,8 +650,8 @@ void test_mergeOrderArrayByIncreasing_oneEqualElemAtBorder() {
     mergeToOrderByIncreasingArrays(a, 5, b, 5, c, &sizeC);
 
     // Assert
-    assert(sizeC == 10);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 9, 10, 11, 12, 13, 13}, sizeC));
+    assert(sizeC == 9);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) {1, 3, 4, 5, 9, 10, 11, 12,  13}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_elemsArrayALowElemsArrayB() {
@@ -740,8 +740,8 @@ void test_mergeOrderArrayByIncreasing_aLargeBAndEqualElemsAtBorders() {
     mergeToOrderByIncreasingArrays(a, 7, b, 2, c, &sizeC);
 
     // Assert
-    assert(sizeC == 9);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 10, 12, 14, 16, 18, 20, 22, 22}, sizeC));
+    assert(sizeC == 7);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) { 10, 12, 14, 16, 18, 20, 22}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
@@ -755,8 +755,8 @@ void test_mergeOrderArrayByIncreasing_bLargeAAndEqualElemsAtBorders() {
     mergeToOrderByIncreasingArrays(a, 2, b, 7, c, &sizeC);
 
     // Assert
-    assert(sizeC == 9);
-    assert(isEqualTwoArrays(c, sizeC, (int[]) {10, 10, 12, 14, 16, 18, 20, 22, 22}, sizeC));
+    assert(sizeC == 7);
+    assert(isEqualTwoArrays(c, sizeC, (int[]) { 10, 12, 14, 16, 18, 20,  22}, sizeC));
 }
 
 void test_mergeOrderArrayByIncreasing() {

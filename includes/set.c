@@ -209,17 +209,28 @@ void mergeToOrderByIncreasingArrays(const int *a, const size_t sizeA, const int 
                                     size_t *sizeC) {
     size_t iReadA = 0;
     size_t iReadB = 0;
-    while (iReadA < sizeA || iReadB < sizeB) {
-        if (iReadB == sizeB || iReadA < sizeA && a[iReadA] < b[iReadB]) {
-            c[iReadA + iReadB] = a[iReadA];
+    while (iReadA < sizeA && iReadB < sizeB) {
+        if (a[iReadA] == b[iReadB]) {
+            c[(*sizeC)++] = b[iReadB];
+            iReadA++;
+            iReadB++;
+        } else if (a[iReadA] < b[iReadB]) {
+            c[(*sizeC)++] = a[iReadA];
             iReadA++;
         } else {
-            c[iReadA + iReadB] = b[iReadB];
+            c[(*sizeC)++] = b[iReadB];
             iReadB++;
         }
     }
 
-    (*sizeC) = iReadA + iReadB;
+    if (iReadA == sizeA && iReadB < sizeB) {
+        for (register size_t i = iReadB; i < sizeB; ++i)
+            c[(*sizeC)++] = b[i];
+    } else if (iReadB == sizeB && iReadA < sizeA) {
+        for (register size_t i = iReadA; i < sizeA; ++i)
+            c[(*sizeC)++] = a[i];
+    }
+
 }
 
 // Задание 9
